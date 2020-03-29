@@ -1,0 +1,35 @@
+html
+ head 
+  title Users List 
+  link(rel="stylesheet" href="/css/litera.bootstrap.min.css")
+  meta(name="csrf-token" content=csrfToken)
+  script(src="/js/script.js")
+ body 
+  .container 
+   .row  
+    .col-sm-6 
+     div(class="alert alert-danger" id="error" style="display: none")
+     div(class="alert alert-success" id="success" style="display: none")
+     -if (error)
+      div(class="alert alert-danger" id="error")= error
+     table(class="table table-bordered table-hover table-striped")
+      tr
+       th 
+       th Name 
+       th City 
+       th 
+       th
+      each user, index in usersInfo
+       tr        
+        td= index+1
+        td
+         form(action="/users?_method=PUT" method="post" id="form"+index ) 
+         input(type="hidden" name="id" value=user.id form="form"+index)
+         input(class="control-label" name="name" value=user.name form="form"+index)
+        td
+         input(class="control-label" name="city" value=user.city form="form"+index)
+         input(type="hidden" name="_csrf" value=csrfToken form="form"+index)
+        td
+         input(class="btn btn-primary" type="submit" value="Update" form="form"+index)
+        td 
+         input(class="btn btn-primary" type="button" value="AjaxUpdate" onclick="ajaxUpdate('form"+index+"')")

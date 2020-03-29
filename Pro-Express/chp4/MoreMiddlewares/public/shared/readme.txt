@@ -1,0 +1,1 @@
+The serve-index middleware is awesome.
