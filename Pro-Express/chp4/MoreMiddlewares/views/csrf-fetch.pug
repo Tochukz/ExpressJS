@@ -1,0 +1,25 @@
+html 
+ head 
+  title Testing CSRF Protection using the Fetch API
+  meta(name="csrf-token" content=csrfToken)
+  link(rel="stylesheet" href="/css/litera.bootstrap.min.css")
+  script(src="/js/script.js")
+ body 
+  .container 
+   .row 
+    .col-sm-12 
+     h2(style="margin-bottom: 2em" id="header") Testing CSRF Protected using Fetch API
+     div(id="content")
+     div(class="alert alert-danger" style="display: none" id="error")
+    .col-sm-6(id="formdiv") 
+     h4.text-primary Submit form (with CSRF token)
+     form(method="post" action="/test-csrf" name="loginform")
+      .form-group 
+       label(for="username") Username
+       input.form-control(name="username" id="username")
+      .form-group
+       label(for="password")
+       input.form-control(name="password" id="password" type="password")
+      button(class="btn btn-success" type="button"  onclick="sendRequestWithToken()") Submit with token
+      span 
+      button(class="btn btn-danger" type="button" onclick="sendRequestWithoutToken()") Submit without token

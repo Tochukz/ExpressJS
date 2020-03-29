@@ -1,0 +1,32 @@
+html 
+ head 
+  title Testing CSRF Protection using Form
+  link(rel="stylesheet" href="/css/litera.bootstrap.min.css")
+ body 
+  .container 
+   .row 
+    .col-sm-12 
+     h2(style="margin-bottom: 2em") Testing CSRF Protection using Traditional Form
+     -if (error)
+      div(class="alert alert-danger")= error
+    .col-sm-6 
+     h4.text-success Submit form (with CSRF token)
+     form(method="post" action="/csrf-test")
+      .form-group 
+       label(for="username") Username
+       input.form-control(name="username" id="username")
+      .form-group
+       label(for="password")
+       input.form-control(name="password" id="password" type="password")
+       input(name="_csrf" value=csrfToken type="hidden")
+      button(class="btn btn-success" type="submit") Submit
+    .col-sm-6
+     h4.text-danger Submit form (without CSRF token)
+     form(method="post" action="/test-csrf")
+      .form-group 
+       label(for="username") Username
+       input.form-control(name=username id="username")
+      .form-group
+       label(for="password")
+       input.form-control(name="password" id="password" type="password")
+      button(class="btn btn-danger" type="submit") Submit 

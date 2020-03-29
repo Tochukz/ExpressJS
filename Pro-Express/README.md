@@ -90,18 +90,25 @@ __Essential Middlewares__
 * _body-parser_ for parsing POST request body data
 * _cookie-parser_ for creating cookies
 * _express-session_ for creating a session (requires cookie-parser before v1.5.0)
-* _csurf_ for Cross-Site Request Forgery
-* _express.static_ or _serve-static_
-* _connect-timeout_
-* _errorhandler_  
-* _method-override_  
-* _response-time_
-* _serve-favicon_  
-* _serve-index_  
-* _vhost_  
-* _connect-busboy_  
+* _csurf_ for Cross-Site Request Forgery (requires session or cookie-parser middleware to be initialized first.)
+* _express.static_ based on  _serve-static_ serves static files and assets.
+* _connect-timeout_ sets a timeout. Recommended for `slow routes` only. Not recommended as a `top-level` middleware. If the request timeout a 503 (service unavailable) will be sent to the client.   
+* _errorhandler_  to be used only on development environment. For production add a custom error handler. A custom error handler is NOT a middleware.
+* _method-override_ provides support for client that does not support some HTTP methods(e.g PUT, DELETE, OPTIONS) such a browser.  
+* _response-time_ adds `X-Response-Time` header to the HTTP responses with the value to time taken to response in ms.
+* _serve-favicon_ serves favicons
+* _serve-index_ lists files in a directory, require `serve-static`(`express.static`) to display the file when user clicks on it.  
+* _vhost_ can control two or more domains and map them to different `app`s based on the domain.
+* _connect-busboy_  for file upload.
 
-to continue from page 62 "express session"  
+__CSRF protection using csurf__  
+The CSRF protection with the _csurf_ module is handled by Express.JS by putting a *_csrf* token in the session (req.session.\_csrf) and validating that value againt values in the _req.body_, _req.query_ and _X-CSRF-Token_ header. I fhte values don't match, the 403 Forbidden HTTP status code is returned. By default _csurf_ don't check _GET_, _HEAD_ or _OPTIONS_ methods.
+_NB_ The validity period of the CSRF token is dictated by the _expires_ or _maxAge_ option property of the _cookie_ or _session_ used.    
+If the time period is too short, for example, then you risk having the user's token expire before they finish completing a form and submit the form.
+If this happens they will get the 403 error when they submit the form and their token has expired. They may have to refresh their page to start all over a again.
+TO avoid this the _maxAge_ of the _cookie_ or _session_ must be significant e.g `{ maxAge: 3*1000*60*60 }` for 3Hours
+
+
 
 ## Part III: Solving Common and Abstract Problems
 
@@ -126,7 +133,7 @@ __To decode a Session ID__
 * Get the session ID's string value from the Browser Dev tool or _Post Man_ Cookie store.
 * By default the Session ID is stored as a cookie data under the app domain with name that defaults to `connect.sid` if the `key` option is not set.   
 It has value of the form `s%3A0E7ag760JMEFnV6dIAggaoCsnwyCaB2P.jgwpKtmx2Cy8KODNnd3AJ1FN%2F1VRrQ6enZ9H8cBbHlI`. This is a URI encoded string.
-* Decode the string with `decodeURIComponent()` function using the browser console or NodeJS console.  
+* Decode the string with `decodeURIComponent()` function using the NodeJS console.  
 
 ```
 > console.log(decodeURIComponent('s%3A0E7ag760JMEFnV6dIAggaoCsnwyCaB2P.jgwpKtmx2Cy8KODNnd3AJ1FN%2F1VRrQ6enZ9H8cBbHlI'));
