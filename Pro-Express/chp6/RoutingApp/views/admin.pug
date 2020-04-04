@@ -1,0 +1,18 @@
+extend master 
+block title 
+  title Admin Page 
+block content 
+  .col-sm-12 
+    .col-sm-6  
+      h3= user.username 
+        span 
+        small= user.email  
+      p 
+        strong Sales 
+        span= metrics.sales
+      p
+        strong Growth 
+        span= metrics.growth
+      p 
+        strong Satisfaction 
+        span= metrics.satisfaction
