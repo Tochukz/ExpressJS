@@ -112,6 +112,9 @@ TO avoid this the _maxAge_ of the _cookie_ or _session_ must be significant e.g 
 ### Chapter 6: Parameters and Routing  
 The Router class acts as a mini Express application.  So you can do `router.use()`,  `router.param()` and `router.VERB()`.
 
+### Chapter 7: Express Request Object  
+__Caution__ Signing a cookie does not hide or encrypt the cookie. It's a simple way to prevent tempering by applying a private value. Signing (or hashing) is mot the same as encryption. The former is for identification and tampering prevention.  The latter is for hiding the content from unauthorized recipients.
+ 
 ## Part III: Solving Common and Abstract Problems
 
 ### Chapter 12 Redis and Authentication Patterns
