@@ -109,6 +109,8 @@ If this happens they will get the 403 error when they submit the form and their 
 TO avoid this the _maxAge_ of the _cookie_ or _session_ must be significant e.g `{ maxAge: 3*1000*60*60 }` for 3Hours
 
 
+### Chapter 6: Parameters and Routing  
+The Router class acts as a mini Express application.  So you can do `router.use()`,  `router.param()` and `router.VERB()`.
 
 ## Part III: Solving Common and Abstract Problems
 
