@@ -112,9 +112,16 @@ TO avoid this the _maxAge_ of the _cookie_ or _session_ must be significant e.g 
 ### Chapter 6: Parameters and Routing  
 The Router class acts as a mini Express application.  So you can do `router.use()`,  `router.param()` and `router.VERB()`.
 
-### Chapter 7: Express Request Object  
+### Chapter 7: Express.js Request Object  
 __Caution__ Signing a cookie does not hide or encrypt the cookie. It's a simple way to prevent tempering by applying a private value. Signing (or hashing) is mot the same as encryption. The former is for identification and tampering prevention.  The latter is for hiding the content from unauthorized recipients.
- 
+
+### Chapter 8: Express.js Response Object
+Streaming an image shows a shorter waiting time than none-streaming.    
+Streaming is useful when dealing with large amount of data (video, binary data, audio, etc) because the streams allow processing to start without finishing transfers.
+
+## Chpater 9: Error Handling and Running an App  
+
+
 ## Part III: Solving Common and Abstract Problems
 
 ### Chapter 12 Redis and Authentication Patterns
