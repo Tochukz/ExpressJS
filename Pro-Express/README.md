@@ -119,7 +119,7 @@ __Caution__ Signing a cookie does not hide or encrypt the cookie. It's a simple 
 Streaming an image shows a shorter waiting time than none-streaming.    
 Streaming is useful when dealing with large amount of data (video, binary data, audio, etc) because the streams allow processing to start without finishing transfers.
 
-## Chpater 9: Error Handling and Running an App  
+### Chpater 9: Error Handling and Running an App  
 
 
 ## Part III: Solving Common and Abstract Problems
