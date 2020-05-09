@@ -120,7 +120,8 @@ Streaming an image shows a shorter waiting time than none-streaming.
 Streaming is useful when dealing with large amount of data (video, binary data, audio, etc) because the streams allow processing to start without finishing transfers.
 
 ### Chpater 9: Error Handling and Running an App  
-
+[HTTP Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)    
+Use []`errorhandler`](https://www.npmjs.org/package/errorhandler) to handle error in dev environment and implement custom error handler for production environment. See Chapter 4.
 
 ## Part III: Solving Common and Abstract Problems
 
