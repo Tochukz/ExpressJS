@@ -95,7 +95,7 @@ __Essential Middlewares__
 * _connect-timeout_ sets a timeout. Recommended for `slow routes` only. Not recommended as a `top-level` middleware. If the request timeout a 503 (service unavailable) will be sent to the client.   
 * _errorhandler_  to be used only on development environment. For production add a custom error handler. A custom error handler is NOT a middleware.
 * _method-override_ provides support for client that does not support some HTTP methods(e.g PUT, DELETE, OPTIONS) such a browser.  
-* _response-time_ adds `X-Response-Time` header to the HTTP responses with the value to time taken to response in ms.
+* _response-time_ adds `X-Response-Time` header to the HTTP responses with the value of time taken to response in ms.
 * _serve-favicon_ serves favicons
 * _serve-index_ lists files in a directory, require `serve-static`(`express.static`) to display the file when user clicks on it.  
 * _vhost_ can control two or more domains and map them to different `app`s based on the domain.
@@ -121,9 +121,16 @@ Streaming is useful when dealing with large amount of data (video, binary data, 
 
 ### Chpater 9: Error Handling and Running an App  
 [HTTP Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)    
-Use []`errorhandler`](https://www.npmjs.org/package/errorhandler) to handle error in dev environment and implement custom error handler for production environment. See Chapter 4.
+Use [`errorhandler`](https://www.npmjs.org/package/errorhandler) to handle error in dev environment and implement custom error handler for production environment. See Chapter 4.
 
 ## Part III: Solving Common and Abstract Problems
+
+### Chapter 10: Abstraction
+Whats the difference between the use of `exports` and `module.exports`  
+
+### Chapter 11: Database, Keys and Stream Tips  
+[Rund Node.js as a service](https://kvz.io/run-nodejs-as-a-service-on-ubuntu-karmic.html)
+
 
 ### Chapter 12 Redis and Authentication Patterns
 _Redis_ is commonly used to store _express-sessions_. Storing sessions in physical storage keeps apps from losing user's data when a system is restarted or redeployed.  It also enables the use of multiple REST APIs since they can all connect to the same Redis server.  
@@ -182,3 +189,27 @@ __Use the _keys_ command to view all the sessions in the Redis store__
 > redis-cli
 127.0.0.1:6379> keys sess*  
 ```
+
+
+### Chapter 13: Multithreading with Clusters    
+With the native _cluster module_, we can effortlessly fork a Node.js process to crete multiple processes. We can spawn as many processes as we have CPUs on that machine.   
+[Learn More](https://nodejs.org/api/cluster.html)  
+
+If you prefer ready-made a solution to the low-level library, checkout `cluster2` on [npm](https://www.npmjs.com/package/cluster2) and [Github](https://github.com/ql-io/cluster2)  
+
+### Chapter 14: Applying Stylus, Less, and Sass  
+__Process Permissions__  
+It is usually a bas idea to run web services as root...  
+
+### Chapter 15: Security Tips
+__HTTP Security Headers__   
+The Express.js middleware called _helmet_ is a collection of security-related middleware that provide most of the security headers descriped in the [Recx article](http://recxltd.blogspot.com/2012/03/seven-web-server-http-headers-that.html) (Seven Web Server HTTP Headers that Improve Web Application Security for Free).  
+See _hemlet_ on [npm](https://www.npmjs.com/package/helmet) and [Github](https://github.com/helmetjs/helmet).   
+
+__Input Validation__  
+it is recommended to to write your own module or use _express-validator_.  
+See the Docs on [Github](https://express-validator.github.io/docs/)   
+
+With  middleware libraries such as _csurf_, _helmet_ and _express-validator_, we can get a good amount of basic security without adding too many developmen cycles.  
+
+### Socket.IO and Express.js
