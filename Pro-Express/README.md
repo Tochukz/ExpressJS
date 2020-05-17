@@ -212,4 +212,7 @@ See the Docs on [Github](https://express-validator.github.io/docs/)
 
 With  middleware libraries such as _csurf_, _helmet_ and _express-validator_, we can get a good amount of basic security without adding too many developmen cycles.  
 
-### Socket.IO and Express.js
+### Chapter 16: Socket.IO and Express.js
+Socket.io automatically provides a client library which can be access on the server at `/socket.io/socket.io.js` when you integrate socket.io into your server.   
+
+### Chapter 17: Domain and Express.js

@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  p A server clock powered by socket.io
+  h4#date &nbsp;
+  input#time
+  button(onclick="stopClock()"  type="button") Stop Clock
