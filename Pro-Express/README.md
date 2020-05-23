@@ -236,3 +236,96 @@ The `domain` module is soon to be deprecated and the `async_hooks` module may be
  You can use the [express-domain-middleware](npmjs.com/package/express-domain-middleware) module to apply domain to every route in your application.  
 
 ### Chapter 18: Sails.js, DerbyJS, LoopBack, and Other Frameworks
+__Sails.js__  
+Install Sails' CLI tool  
+```
+> npm install -g sails
+```   
+See Sails CLI available commands  
+```
+> sails -h  
+```
+Create a new Sails App
+```
+> sails new MySailsApp  --fast
+```
+Start sails Dev Server   
+```
+> cd MySailsApp
+sails lift
+```  
+Generate a Sails API Model and Controller  
+```
+sails generate api Category
+```
+This above command will generate `api/models/Category.js` and `api/controllers/CategoryController.js`  
+
+Generate a Model `api/models/User.js`  
+```
+> sails generate model User [id: number, name: string, email: string]
+```
+Generate a Controller `api/controllers/UserController.js`  
+```
+> sails generate controller User[create, update, user, users, destroy]
+```
+Generate an adapter `api/adapter/User`  
+```
+>  sails generate adapter User:
+```
+Generate a Generator  
+```
+> sails generate generator User  
+```
+
+See how to configure Sails [route](sailsjs.com/documentation/concepts/routes), [controllers and actions.](https://sailsjs.com/documentation/concepts/actions-and-controllers)  
+
+__DerbyJS__  
+Clone or the Derby Example App on https://github.com/derbyjs/derby-examples.git   
+
+Install the dependency and start the server  
+```
+> cd derby-examples  
+> npm install
+> npm run start
+```  
+
+__LoopBack v4__  
+Install Loopback v4 CLI  
+```
+> npm install -g @loopback/cli
+```
+Create a new Loopback project  
+```
+> lb4 app
+```
+Follow the prompt to name the project and other configurations.  
+
+Start the Dev Server  
+```
+> cd MyApp
+> npm start   
+```  
+Generate a controller  
+```
+> lb4 controller  
+```
+Follow the prompt to name the controller and specify other configurations.  
+
+Loopback's API Explorer seems to be a useful and interesting tool to look back at.  
+
+__NestJs__  
+Install the Nest.js CLI tool  
+```
+> npm i -g @nestjs/cli
+```
+Create a Nest App  
+```
+> nest new my-app
+```  
+Start Nest Dev Server  
+```
+> cd my-app  
+> npm run start
+```  
+
+## PART IV: Tutorials and Examples  
