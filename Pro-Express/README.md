@@ -210,9 +210,29 @@ __Input Validation__
 it is recommended to to write your own module or use _express-validator_.  
 See the Docs on [Github](https://express-validator.github.io/docs/)   
 
-With  middleware libraries such as _csurf_, _helmet_ and _express-validator_, we can get a good amount of basic security without adding too many developmen cycles.  
+With  middleware libraries such as _csurf_, _helmet_ and _express-validator_, we can get a good amount of basic security without adding too many development cycles.  
 
 ### Chapter 16: Socket.IO and Express.js
 Socket.io automatically provides a client library which can be access on the server at `/socket.io/socket.io.js` when you integrate socket.io into your server.   
 
 ### Chapter 17: Domain and Express.js
+The Node.js [domain module](https://nodejs.org/api/domain.html) is awaiting deprecation until a replacement API has been finalized.  
+
+Normally, error thrown in a try block is caught in the catch block but error thrown by asynchronous code in a try block will NOT be caught in the catch block
+```
+try {
+    setTimeout(() => {
+        throw new Error('Fail!');
+    }, Math.round(Math.random()*100))
+} catch(err) {
+    console.log('Custom Error:', err.message);
+}
+```
+The error above will be uncaught. A good rule of thumb is to use `try/catch` only for synchronous code.  
+
+The native `domain` module is designed to catch errors in asynchronous code like the one above.  
+The `domain` module is soon to be deprecated and the `async_hooks` module may be an alternative but it is currently in it's experimental stage. See [async_hooks](nodejs.org/api/async_hooks.html).
+
+ You can use the [express-domain-middleware](npmjs.com/package/express-domain-middleware) module to apply domain to every route in your application.  
+
+### Chapter 18: Sails.js, DerbyJS, LoopBack, and Other Frameworks
