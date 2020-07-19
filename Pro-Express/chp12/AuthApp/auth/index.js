@@ -13,14 +13,14 @@ function Auth(req, res, next) {
         case 'GET/register':
           registerGet(req, res);
           break;
-        case 'POST/register': 
+        case 'POST/register':
           registerPost(req, res);
           break;
         case 'POST/logout':
           logoutPost(req, res);
           break;
-        default: 
-          handleAuth(req, res, next); 
+        default:
+          handleAuth(req, res, next);
     }
 }
 

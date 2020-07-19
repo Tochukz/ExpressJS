@@ -28,7 +28,8 @@ app.use(session({
     cookie: {
         maxAge: 3600000
     }
-}));
+}));  // Secret or key should be store as environment variables
+
 /* Auth Middleware */
 app.use(Auth);
 
