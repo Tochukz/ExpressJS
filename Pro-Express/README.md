@@ -108,6 +108,8 @@ If the time period is too short, for example, then you risk having the user's to
 If this happens they will get the 403 error when they submit the form and their token has expired. They may have to refresh their page to start all over a again.
 TO avoid this the _maxAge_ of the _cookie_ or _session_ must be significant e.g `{ maxAge: 3*1000*60*60 }` for 3Hours
 
+### Chapter 5: Template Engine and Consolidate.js   
+Skipped
 
 ### Chapter 6: Parameters and Routing  
 The Router class acts as a mini Express application.  So you can do `router.use()`,  `router.param()` and `router.VERB()`.
@@ -119,14 +121,14 @@ __Caution__ Signing a cookie does not hide or encrypt the cookie. It's a simple 
 Streaming an image shows a shorter waiting time than none-streaming.    
 Streaming is useful when dealing with large amount of data (video, binary data, audio, etc) because the streams allow processing to start without finishing transfers.
 
-### Chpater 9: Error Handling and Running an App  
+### Chapter 9: Error Handling and Running an App  
 [HTTP Status Codes](https://www.restapitutorial.com/httpstatuscodes.html)    
 Use [`errorhandler`](https://www.npmjs.org/package/errorhandler) to handle error in dev environment and implement custom error handler for production environment. See Chapter 4.
 
 ## Part III: Solving Common and Abstract Problems
 
 ### Chapter 10: Abstraction
-Whats the difference between the use of `exports` and `module.exports`  
+What is the difference between the use of `exports` and `module.exports`  
 
 ### Chapter 11: Database, Keys and Stream Tips  
 [Rund Node.js as a service](https://kvz.io/run-nodejs-as-a-service-on-ubuntu-karmic.html)
