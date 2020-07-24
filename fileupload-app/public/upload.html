@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <link rel="stylesheet" href="/css/yeti.bootstrap.min.css" />
+    <style>
+        .dropzone {
+            border: dotted navy 1px;
+            background: lightblue;
+            height: 90px;
+            text-align: center;
+        }
+        .thumbnail {
+            height: 90px;
+            background: silver;
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid pt-4">
+        <div class="row">
+            <div class="col-sm-3">
+                <form enctype="multipart/form-data" method="post" action="/fileupload">
+                  <h5 class="text-primary">Single File Upload</h5>
+                  <div class="form-group">
+                      <input type="file" class="form-control-file" name="profile" id="profile">
+                  </div>
+                  <div class="form-group">
+                      <input type="submit" class="btn btn-primary form-control" value="Upload">
+                  </div>
+                  <div class="form-group">
+                    <input type="button" class="btn btn-warning form-control" value="Upload with Fetch" onclick="uploadFetch()">
+                  </div>
+                </form>
+                <div class="alert" id="alert"></div>
+            </div>
+            <div class="col-sm-3">
+                <form enctype="multipart/form-data" method="post" action="/multifile">
+                  <h5 class="text-success">Multiple File Upload</h5>
+                  <div class="form-group">
+                      <input type="file" class="form-control-file" name="profiles" multiple id="file">
+                  </div>
+                  <div class="form-group">
+                      <input type="submit" class="btn btn-success form-control" value="Upload">
+                  </div>
+                </form>
+            </div>
+            <div class="col-sm-3">
+                <h5>Using Dropzone.js</h5>
+                <form enctype="multipart/form-data" method="post" action="/fileupload" class="dropzone" id="my-drop-form">
+                  <p class="text-center">Drag and Drop</p>                   
+                </form>
+            </div>
+            <div class="col-sm-3">
+                <h5>Using Fetch API</h5>
+                <div class="thumbnail" id="fileUpload">
+                  <p class="text-center">Drop file to upload</p>
+                </div>
+                <div class="alert" id="result"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/dropzone.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
