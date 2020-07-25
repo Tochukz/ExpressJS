@@ -10,7 +10,7 @@ Dropzone.options.myDropForm = {
     }
 }
 
-/** Using native fetch API */
+/** Drag and drop file upload */
 var fileUpload = document.querySelector("#fileUpload");
 fileUpload.addEventListener("dragover", function(e){ e.preventDefault()});
 fileUpload.addEventListener("drop", readFile, false);
@@ -18,7 +18,7 @@ fileUpload.addEventListener("drop", readFile, false);
 function readFile(event){
     event.stopPropagation(); //Stops some browser from redirecting.
     event.preventDefault();
-    
+
     const filelist = event.dataTransfer.files;
     const file = filelist[0];
     const formData = new FormData();
@@ -38,8 +38,9 @@ function readFile(event){
     });
 }
 
+/* Using Fetch API to upload */
 function uploadFetch() {
-    const profileFile =  document.querySelector('#profile'); 
+    const profileFile =  document.querySelector('#profile');
     const formData = new FormData();
     formData.append('profile', profileFile.files[0]);
 
@@ -47,12 +48,12 @@ function uploadFetch() {
         method: 'post',
         body: formData,
       })
-      .then(res => { 
+      .then(res => {
         return res.text();
       })
       .then(function (data) {
         console.log('Request succeeded with JSON response', data);
-        $('#alert').text(data.toString());       
+        $('#alert').text(data.toString());
         $('#alert').addClass('text-success');
       })
       .catch(function (error) {
