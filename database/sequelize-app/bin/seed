@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+require('dotenv').config();
+const colors = require('colors');
+const user = require('../db/seeders/user');
+const sequelize = require('../db/sequelize');
+
+const seeders = {
+    user,
+};
+
+const seedArg = process.argv[2];
+
+if (seedArg) {
+    const toSeed = seeders[seedArg]
+    if (!toSeed) {
+      console.log(`No seeder defined with the name "${seedArg}"`.red);
+      return false;
+    }
+    toSeed.seed();
+} else {
+  // Seed All
+  Object.keys(seeders).forEach(async seed => {
+    const total = await seeders[seed].seed();
+    console.log(`Total seeds for ${seed} = ${total}`.green);
+  });
+}
+
+
+/*
+ * To models specified in the seeders object literal run 
+ * > npm run seed
+ * 
+ * To seed a specific seeder say user for example, run 
+ * > npm run seed user
+ */

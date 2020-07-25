@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+require('dotenv').config();
+const colors = require('colors');
+const user = require('../db/migrations/user');
+const sequelize = require('../db/sequelize');
+
+const migrations = {
+    user,
+};
+
+const migrateArg = process.argv[2];
+
+if (migrateArg) {
+    const toMigrate = migrations[migrateArg]
+    if (!toMigrate) {
+      console.log(`No migration defined with the name "${migrateArg}"`.red);
+      return false;
+    }
+    toMigrate.migrate();
+} else {
+  // Migrate All
+  sequelize.sync();
+}
+
+/** Migrate a single model */
+//user.migrate();
+
+/**
+ * To migrate all the migrations defined in the migrations object literal run
+ * > npm run migrate  
+ * 
+ * To migrate a single migration, say user, run 
+ * > npm run migration user
+ */
