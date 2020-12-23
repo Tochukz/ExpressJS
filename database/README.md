@@ -1,6 +1,6 @@
-## Database
+# Database
 
-### Sequelize
+## Sequelize
 __Install Dependencies__   
 Install the Sequelize package  
 ```
@@ -11,80 +11,80 @@ Install your chosen database driver. For MySQL database Sequelize uses `mysql2`.
 > npm install mysql2
 ```
 
-### Migrations  
-Install Sequelize CLI  
+### Sequelize Migrations  
+__Install Sequelize CLI__    
 ```
 > npm install --save sequelize-cli
 ```
 
-Bootstrapping sequelize scaffolding
+__Bootstrapping sequelize scaffolding__
 ```
 > npx sequelize-cli init
 ```  
 This will generate `config/config.json`, `models/index.js`, `migrations` and `seeders` files/directories.  
 
-Create a database  
+__Create a database__    
 ```
 > npx sequelize-cli db:create ojlinks_books
 ```
-Create a Staff model and it's migrations
+__Create a Staff model and it's migrations__  
 ```
 > npx sequelize-cli model:generate --name Staff --attributes staffId:number,firstname:string,lastname:string,email:string  
 ```
 This will generate the model `models/staff.js` and a migrations `migrations/xxxxxxxxxxx-create-staff.js`  
 
-To generate a migration only   
+__To generate a migration only__     
 ```
 > npx sequelize-cli migration:generate --name create-user
 ```
 This will generate `migrations/xxxxxxxxxx-create-user.js` migration file.  
 
-Run the migration to create the table
+__Run the migration to create the table__  
 ```
 > npx sequelize-cli db:migrate  
 ```
 
-Revert most recent migration   
+__Revert most recent migration__      
 ```
 > npx sequelize-cli db:migrate:undo
 ```  
 
-Revert all migrations  
+__Revert all migrations__    
 ```
 > npx sequelize-cli db:migrate:undo:all
 ```  
 
-Revert back to a specific migration  
+__Revert back to a specific migration__     
 ```
 > npx sequelize-cli db:migrate:undo:all --to XXXXXXXXXXXXXX-create-posts.js
 ```  
 
-Create a Seeder  
+__Create a Seeder__    
 ```
 > npx sequelize-cli seed:generate --name staff
 ```  
 
-Running Seeds
+__Running Seeds__   
 ```
 > npx sequelize-cli db:seed:all
 ```
 
-Undo most recent seeding  
+__Undo most recent seeding__    
 ```
 > npx sequelize-cli db:seed:undo
 ```
 
-Undo a specific seed
+__Undo a specific seed__  
 ```
 > npx sequelize-cli db:seed:undo --seed xxxxxxxxx-staff
 ```  
 
-Undo all seeds  
+__Undo all seeds__    
 ```
 > npx sequelize-cli db:seed:undo:all
 ```  
 
-### Association  
+### Sequelize Association  
 In an association, the model that the function is being invoked on is the _source_ and the model that is passed as an argument is the _target_. For example  
 ```
 User.hasOne(Project)
@@ -96,4 +96,9 @@ _BelongsTo_ associations are associations where the foreign key for the one-to-o
 ```
 Player.belongsTo(Team)
 ```  
-Here the foreign key exists on the `Player` model.
+Here the foreign key exists on the `Player` model.  
+
+
+## Mongoose  
+### Defining Schema    
+Schemas not only define the structure of your document and casting of properties, they also define documents _instance methods_, _static Model methods_, _compound indexes_, and document lifecycle hooks called _middleware_.   
