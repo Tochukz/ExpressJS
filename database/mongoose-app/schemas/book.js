@@ -4,33 +4,42 @@ const { Schema, Types } = mongoose;
 
 const bookSchema = new Schema(
   {
-    title: String,
-    author: String,
-    price: Number,
+    title: { 
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
     subCatId: {
       type: Types.ObjectId,
-      alias: 'subcategoryId'
+      alias: 'subcategoryId',
+      required: true,
     },
     details: {
-      description: String,
+      edition: String,
+      description: { 
+        type: String,
+        require: true,
+      },
       language: String,
       pages: Number,
-      edition: String
-    },
-    isbn: {
-      type: String,
-    },
+      coverImage: String
+    }, 
     entryDate: {
       type: Date,
       default: Date.now
     },
-    dates: {
-      created: Date,
-      updated: Date,
-      deleted: Date,
-    },
   },
-  {autoIndex: false}
+  {
+    autoIndex: false,
+    timestamps: true
+  }
 );
 
 /**  Setting index is fine in development but haveb significant performance imapct in productionl */
@@ -39,13 +48,16 @@ const bookSchema = new Schema(
 
 /** Adding instance method to the model */
 bookSchema.methods.findSimilar = function(callBack) {
+  //Todo: To be tested
   return mongoose.models('Book').find({subcategoryId: this.subcategoryId}, callBack);
 };
 
 /** Adding static method to the model */
 bookSchema.statics.findSimilarTitle = function(title) {
+   //Todo: To be tested
   return this.find({title: new RegExp(title, 'i')});
 }
+
 bookSchema.statics.byAuthor = function(author) {
   return this.find({author: new RegExp(author, 'i')});
 }
