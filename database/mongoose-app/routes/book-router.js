@@ -1,9 +1,10 @@
 var express = require('express');
+const { isValidObjectId, Types } = require('mongoose');
 const Book = require('../models/Book');
 
 var router = express.Router();
 
-router.get('/books', async (req, res, next) => {
+router.get('', async (req, res, next) => {
   try {
     const books = await Book.find();
     return res.send(books);
@@ -12,7 +13,22 @@ router.get('/books', async (req, res, next) => {
   }
 });
 
-router.get('/books/like/:bookTitle', async (req, res, next) => {
+router.get('/:bookId', async (req, res, next) => {
+  try {
+    const bookId = req.params.bookId;
+    if (bookId.length !=24 || !isValidObjectId(bookId)) {
+      return next(new Error("Invalid book ID"));
+    }
+    const bookObjectId = Types.ObjectId(bookId);
+    const book = await Book.findOne({ _id: bookObjectId});
+    return res.send(book);
+  } catch(err) {
+    return next(err);
+  }
+});
+
+/** Todo: Work on the underlying model instance method */
+router.get('/like/:bookTitle', async (req, res, next) => {
   try {
     const title = req.params.bookTitle;
     const book = await Book.findOne({ title });
@@ -26,7 +42,7 @@ router.get('/books/like/:bookTitle', async (req, res, next) => {
   }
 });
 
-router.get('/books/by/:author', async (req, res, next) => {
+router.get('/by/:author', async (req, res, next) => {
   try {
     const author = req.params.author;
     const book = await Book.byAuthor(author).exec()
@@ -36,7 +52,7 @@ router.get('/books/by/:author', async (req, res, next) => {
   }
 });
 
-router.post('/books/create', async (req, res, next) => {
+router.post('/create', async (req, res, next) => {
   try {
     const newData  = req.body;
     const newBook = new Book(newData)
@@ -46,5 +62,6 @@ router.post('/books/create', async (req, res, next) => {
     return next(err);
   }
 });
+
 
 module.exports = router;
