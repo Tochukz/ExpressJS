@@ -39,7 +39,17 @@ router.post('/create', async (req, res, next) => {
 
 router.put('/update', async (req, res, next) => {
   try {
-    
+    const {_id, ...subCategoryData} = req.body;
+    if (_id.length != 24 || ! isValidObjectId(_id)) {
+      return next(new Error("Invalid Subcategory ID"));
+    }
+    const subCatObjectId = Types.ObjectId(_id);
+    const result = await Subcategory.updateOne({_id: subCatObjectId}, {...subCategoryData});
+    let updatedData = {};
+    if (result.ok || result.nModified) {
+        updatedData = await Subcategory.findOne({_id: subCatObjectId});
+    }
+    return res.status(201).json(updatedData);
   } catch(err) {
     return next(err);
   }

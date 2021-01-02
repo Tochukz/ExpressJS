@@ -27,14 +27,14 @@ router.get('/:bookId', async (req, res, next) => {
   }
 });
 
-/** Todo: Work on the underlying model instance method */
 router.get('/like/:bookTitle', async (req, res, next) => {
   try {
     const title = req.params.bookTitle;
     const book = await Book.findOne({ title });
     let similarBooks = {};
     if (book) {
-      similarBooks = await book.findSimilar();
+      //similarBooks = await book.findSimilarSubcategory();
+      similarBooks = await Book.findSimilarTitle();
     }
     return res.send({book, similarBooks});
   } catch(err) {
@@ -63,5 +63,39 @@ router.post('/create', async (req, res, next) => {
   }
 });
 
+router.put('/update', async (req, res, next) => {
+  try {
+    const {_id, ...bookData} = req.body;
+    if (_id.length != 24 || !isValidObjectId(_id)) {
+      return next(new Error('Invalid Book ID'));
+    }
+    const flattened = flatten(bookData);
+    const bookObjectId = new Types.ObjectId(_id);   
+    const result = await Book.updateOne({_id: bookObjectId},  {$set: flattened});
+    let updatedBook = {}
+    if (result.ok || result.nModified) {
+      updatedBook = await Book.findOne({_id: bookObjectId});
+    }
+
+    return res.status(201).json(updatedBook);
+  } catch(err) {
+    return next(err);
+  }
+});
+
+function flatten(obj) {
+  const newObj = {};
+  for(prop in obj) {
+    if (typeof obj[prop] == 'object' && !Array.isArray(obj[prop])) {
+      for(innerProp in obj[prop]) {
+        const newKey = `${prop}.${innerProp}`; 
+        newObj[newKey] = obj[prop][innerProp];
+      }
+    } else {
+      newObj[prop] = obj[prop];
+    }
+  }
+  return newObj;
+}
 
 module.exports = router;

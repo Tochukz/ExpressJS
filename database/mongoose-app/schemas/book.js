@@ -47,24 +47,18 @@ const bookSchema = new Schema(
 // autoIndex can also be set in ducing the schema defition as seen above or globally in the connect method.
 
 /** Adding instance method to the model */
-bookSchema.methods.findSimilar = function(callBack) {
-  //Todo: To be tested
-  return mongoose.models('Book').find({subcategoryId: this.subcategoryId}, callBack);
+bookSchema.methods.findSimilarSubcategory = function(callBack) {
+  return mongoose.model('Book').find({subcategoryId: this.subcategoryId}, callBack);
 };
 
 /** Adding static method to the model */
-bookSchema.statics.findSimilarTitle = function(title) {
-   //Todo: To be tested
-  return this.find({title: new RegExp(title, 'i')});
+bookSchema.statics.findSimilarTitle = function() {
+  const docId = new Types.ObjectId(this._id);
+  return mongoose.model('Book').find({_id: {$ne: this._id}, title: new RegExp(this.title, 'i')});
 }
 
 bookSchema.statics.byAuthor = function(author) {
   return this.find({author: new RegExp(author, 'i')});
-}
-
-bookSchema.statics.findSimilarTitleAsyc = async function() {
-  const title = this.title; 
-  return await this.find({title: new RegExp(title, 'i')});
 }
 
 

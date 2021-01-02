@@ -100,6 +100,7 @@ Here the foreign key exists on the `Player` model.
 
 
 ## Mongoose  
+[Doc Guide](https://mongoosejs.com/docs/guide.htm)
 ### Defining Schema    
 Schemas not only define the structure of your document and casting of properties, they also define documents _instance methods_, _static Model methods_, _compound indexes_, and document lifecycle hooks called _middleware_.    
 
@@ -107,4 +108,7 @@ __Instance methods__
 Do not declare instance methods or static method on your model using ES6 arrow functions (=>). Arrow functions explicitly prevent binding this, so your method will not have access to the document.  
 
 __Indexes__  
-Learn more... 
+Learn more...
+
+__Schema Options__  
+See [guide options](https://mongoosejs.com/docs/guide.html#options) for details of the schema options

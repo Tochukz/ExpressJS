@@ -40,11 +40,14 @@ router.post('/create', async (req, res, next) => {
 
 router.put('/update', async(req, res, next) => {
   try {
-    //Todo: Complete and make it work.
     const {_id, ...categoryData} = req.body;  
     const catObjectId = new Types.ObjectId(_id);
-    const updatedData = Category.update({_id: catObjectId}, {...categoryData});
-    return res.status(201).json(updatedData);
+    const result = await Category.updateOne({_id: catObjectId}, {...categoryData});
+    let updatedData = {};
+    if (result.ok || result.nModified) {
+      updatedData = await Category.findOne({_id: catObjectId});
+    }
+    return res.status(201).send(updatedData);
   } catch(err) {
     return next(err);
   }
