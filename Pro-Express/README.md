@@ -106,7 +106,7 @@ The CSRF protection with the _csurf_ module is handled by Express.JS by putting 
 _NB_ The validity period of the CSRF token is dictated by the _expires_ or _maxAge_ option property of the _cookie_ or _session_ used.    
 If the time period is too short, for example, then you risk having the user's token expire before they finish completing a form and submit the form.
 If this happens they will get the 403 error when they submit the form and their token has expired. They may have to refresh their page to start all over a again.
-TO avoid this the _maxAge_ of the _cookie_ or _session_ must be significant e.g `{ maxAge: 3*1000*60*60 }` for 3Hours
+To avoid this the _maxAge_ of the _cookie_ or _session_ must be significant e.g `{ maxAge: 3*1000*60*60 }` for 3Hours
 
 ### Chapter 5: Template Engine and Consolidate.js   
 Skipped

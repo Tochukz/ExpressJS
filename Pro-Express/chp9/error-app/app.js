@@ -18,7 +18,7 @@ app.set('json spaces', 2);
 app.use(morgan('dev'));
 
 /** Use app.locals to set app-wide settings such as location. URLS, contact info etc
- *  unlike res.locals that is specific to a given request, app.local is available fo all requests
+ *  unlike res.locals that is specific to a given request, app.local is available for all requests
 */
 app.locals = {lang: 'en', 'appName': 'HackHall'};
 
@@ -58,7 +58,7 @@ app.get('/server-error', (req, res, next) => {
 /** Catch all 404 errors */
 app.get('*', (req, res) => {
   res.render('404');
-}); 
+});
 
 
 
@@ -72,11 +72,11 @@ if (app.get('env').trim() == 'development') {
     res.status(status);
     console.log('production error', status);
     switch(status) {
-      case 401: 
+      case 401:
         return res.render('401');
-      case 403: 
+      case 403:
         return res.render('403');
-      default: 
+      default:
         return res.render('500');
     }
   });
