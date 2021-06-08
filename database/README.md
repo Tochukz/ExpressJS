@@ -64,11 +64,14 @@ __Create a Seeder__
 > npx sequelize-cli seed:generate --name staff
 ```  
 
-__Running Seeds__   
+__Running all seeders__   
 ```
 > npx sequelize-cli db:seed:all
 ```
-
+__Running a specific seeder__  
+```
+> npx sequelize-cli db:seed --seed 20210131083031-users
+```
 __Undo most recent seeding__    
 ```
 > npx sequelize-cli db:seed:undo
