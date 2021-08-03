@@ -115,3 +115,32 @@ Learn more...
 
 __Schema Options__  
 See [guide options](https://mongoosejs.com/docs/guide.html#options) for details of the schema options
+
+## SQLite
+__Install NPM packages__  
+```
+> npm install sqlite3
+> npm install sequelize
+```
+You can use the `sequelize-cli` package to develop your models and run your migration.
+```
+> npm install sequelize-cli --save-dev
+```
+A few `sequelize-cli` commands may not be support in `SQLite` For example the `db:create` and `db:drop` command are not supported but a whole lot others are supported.
+
+__Migrating__  
+You can use `sequelize-cli` to generate and run migrations in `SQLite`
+To generate a model and migration
+```
+> npx sequelize-cli model:generate --name Staff --attributes staffId:number,firstname:string,lastname:string,email:string  
+```
+This will generate the model `models/staff.js` and a migrations `migrations/xxxxxxxxxxx-create-staff.js` .  
+Other `sequelize-cli` commands also work the same. For example to run a seeder
+```
+> npx sequelize-cli db:seed:all  
+```
+
+__Model Syncing__  
+Another way to create and modify tables is to use the `sync` method of the model.  For example calling `User.sync()` will create the table if it doesn't exist.
+You call pass the option `User.sync({force: true})` to drop and recreate the table or `User.sync({force })` to alter the table based on changes on your model.   
+You can conveniently put this into a script file and run it as your migration as an `npm` script.
