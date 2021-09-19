@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-const { User } = require('../models');
+const { User, Staff } = require('../models');
+const staff = require('../models/staff');
 
 /* GET users listing. */
 router.get('/', async(req, res, next) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({include: {model: Staff, as: 'staff'}});
     return res.json(users);
   } catch(err) {
     return next(err);
@@ -25,8 +26,8 @@ router.get('/:userId', async (req, res, next) => {
 router.post('/create', async (req, res, next) => {
   try {
     const data = req.body;
-    data.createdAt = new Date();
-    data.updatedAt = new Date();
+    // data.createdAt = new Date();
+    // data.updatedAt = new Date();
     const user = await User.create(req.body);
     return res.status(201).json(user);
   } catch(err) {
@@ -37,7 +38,7 @@ router.post('/create', async (req, res, next) => {
 router.put('/update', async (req, res, next) => {
   try {
     const {userId, ...data} = req.body;
-    data.updatedAt = new Date();
+    // data.updatedAt = new Date();
     await User.update(data, {where: { userId }});
     const user = await User.findOne({ where: { userId }});
     return res.status(201).json(user);

@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Staff extends Model {
     static associate(models) {
-
+      models.Staff.hasOne(models.User, {foreignKey: 'staffId', sourceKey: 'staffId', as: 'user'});
     }
   };
   Staff.init({
@@ -23,12 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       required: true,
     },
     email: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Staff',
     tableName: 'staffs',
+    timestamps: true,
   });
   return Staff;
 };

@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     static associate(models) {
-
+      models.User.belongsTo(models.Staff, {foreignKey: 'staffId', sourceKey: 'staffId',  as: 'staff'});
     }
   };
   user.init({
@@ -23,12 +23,15 @@ module.exports = (sequelize, DataTypes) => {
       required: true,
     },
     email: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    staffId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'users'
+    tableName: 'users',
+    timestamps: true,
   });
   return user;
 };

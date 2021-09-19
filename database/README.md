@@ -129,7 +129,11 @@ You can use the `sequelize-cli` package to develop your models and run your migr
 A few `sequelize-cli` commands may not be support in `SQLite` For example the `db:create` and `db:drop` command are not supported but a whole lot others are supported.
 
 __Migrating__  
-You can use `sequelize-cli` to generate and run migrations in `SQLite`
+You can use `sequelize-cli` to generate and run migrations in `SQLite`.  
+First run the `init` command
+```
+> npx sequelize-cli init
+```
 To generate a model and migration
 ```
 > npx sequelize-cli model:generate --name Staff --attributes staffId:number,firstname:string,lastname:string,email:string  
