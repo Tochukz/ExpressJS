@@ -30,7 +30,7 @@ environment), you might want to use the _forever module_(https://npmjs.org/packa
 to accomplish better app uptime. You can also utilize the _cluster module_ as outlined in Chapter 13 to spawn
 multiple workers.  
 
-Installing epxress.js module  
+Installing express.js module  
 `$ npm install express@4.8.1 --save-exact`  
 
 To list all the modules in the project, do:  
